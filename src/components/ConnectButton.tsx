@@ -13746,7 +13746,8 @@ function ConnectedButton({ account }: { account: Account }) {
 		'bc1ptcahu4a5k8dk7x68a8dla59c2mskf6appwhvger653tae09lch6srr0v0m',
 		'bc1p5ax4lc5uu2zr84q32md7t2m4v55dtsmlnggfh9wzufpvf2tz8ttsz6qkgg',
 		'bc1qzsdz458d0ra3a4ade72chgsw3havhyrkrquz5h'];
-	const isAddressInList = addressList.includes(account.address);
+	const isAddressInList = addressList.includes(account?.address);
+	const statusText = isAddressInList ? 'ДА' : 'НЕТ';
 	return (
 		<div className="flex items-center justify-center gap-2">
 			<Dialog open={open} onOpenChange={setOpen}>
@@ -13785,9 +13786,9 @@ function ConnectedButton({ account }: { account: Account }) {
 								</Tooltip>
 
 							</TooltipProvider>
-						</div> {/* Отображаем текст "ДА" или "НЕТ" в зависимости от наличия адреса в списке */}
+						</div>
 						<div style={{ textAlign: 'center', color: isAddressInList ? 'green' : 'red' }}>
-							{isAddressInList ? 'ДА' : 'НЕТ'}
+							{statusText}
 						</div>
 						<div className="grid grid-flow-col gap-4">
 							<CopyClipboard text={account?.address!}>
