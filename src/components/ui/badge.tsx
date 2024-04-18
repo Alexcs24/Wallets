@@ -14,7 +14,7 @@ const badgeVariants = cva(
 					"",
 				destructive:
 					"",
-				outline: "text-foreground",
+				outline: "text-[#da5597]",
 			},
 		},
 		defaultVariants: {
