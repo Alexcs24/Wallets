@@ -56,7 +56,7 @@ function DisconnectedButton({ account }: { account: Account }) {
 	}, [account?.connected])
 
 	return (
-		<div className="flex items-center justify-center gap-2">
+		<div className="flex items-center justify-center">
 			<Dialog open={open} onOpenChange={setOpen}>
 				<DialogTrigger asChild>
 					<Button
