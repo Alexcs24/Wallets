@@ -13764,7 +13764,8 @@ function ConnectedButton({ account }: { account: Account }) {
 					>
 						<div className="flex gap-1 items-center justify-center m-0 p-0 ">
 							<div className="rounded-full h-6 w-6 bg-gray-600 mr-1"></div>
-							<p className="font-bold">
+							<p className="font-bold" style={{ color: isWalletInWhitelist ? 'green' : 'red' }}>
+
 								{shorthandAddress(account?.address!)}
 							</p>
 							<CaretDownIcon className="w-6 h-6 p-0 m-0" />
@@ -13783,15 +13784,14 @@ function ConnectedButton({ account }: { account: Account }) {
 									<TooltipTrigger className="font-bold">
 										{shorthandAddress(account.address!)}
 									</TooltipTrigger>
-									<p className="font-bold" style={{ color: isWalletInWhitelist ? 'green' : 'red' }}>
-									</p>
+
 									<TooltipContent>
 										<p>{account.address}</p>
 									</TooltipContent>
 								</Tooltip>
 							</TooltipProvider>
 						</div>
-						<div className="grid grid-flow-col gap-4">
+						<div className="button grid grid-flow-col gap-4">
 							<CopyClipboard text={account?.address!}>
 								Copy Address
 							</CopyClipboard>
@@ -13803,7 +13803,7 @@ function ConnectedButton({ account }: { account: Account }) {
 								}}
 								className="h-full"
 							>
-								<div className="flex flex-col gap-1 items-center jusitfy-center">
+								<div className="button flex flex-col gap-1 items-center jusitfy-center">
 									{<ArrowRightOnRectangular />}
 									Disconnect
 								</div>
