@@ -2,9 +2,9 @@ import { Wallet } from "../types/wallet"
 import AccountProvider from "./account/accountContext"
 import WalletProvider from "./wallet/walletContext"
 import { Toaster } from "../components/ui/toaster"
-import { unisat, xverse } from "../lib/integrations"
+import { ordinalSafe, unisat, xverse } from "../lib/integrations"
 
-export const wallets: Wallet[] = [unisat, xverse]
+export const wallets: Wallet[] = [unisat, ordinalSafe, xverse]
 
 export default function OrangeKitProvider({
 	children,
