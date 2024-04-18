@@ -26,7 +26,7 @@ export const CopyClipboard = ({
 			}}
 			disabled={copied}
 			className={cn(
-				"flex flex-col-reverse items-center justify-between gap-2",
+				"button flex flex-col-reverse items-center justify-between gap-2",
 				children ? "border py-1 px-2 rounded-md" : "border-0"
 			)}
 		>
