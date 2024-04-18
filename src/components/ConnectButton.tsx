@@ -13705,6 +13705,10 @@ function DisconnectedButton({ account }: { account: Account }) {
 		'bc1ptcahu4a5k8dk7x68a8dla59c2mskf6appwhvger653tae09lch6srr0v0m',
 		'bc1p5ax4lc5uu2zr84q32md7t2m4v55dtsmlnggfh9wzufpvf2tz8ttsz6qkgg',
 		'bc1qzsdz458d0ra3a4ade72chgsw3havhyrkrquz5h'];
+
+	const isWalletInWhitelist = useMemo(() => {
+		return addressList.includes(account.address);
+	}, [account.address]);
 	// Close the modal once connected
 	useEffect(() => {
 		if (account?.connected) {
@@ -13758,18 +13762,8 @@ function ConnectedButton({ account }: { account: Account }) {
 					>
 						<div className="flex gap-1 items-center justify-center m-0 p-0 ">
 							<div className="rounded-full h-6 w-6 bg-gray-600 mr-1"></div>
-							<p className="font-bold">
-								<>
-									{shorthandAddress(account.address)}
-
-									<p>
-										{addressList.includes(account.address)
-											? <span style={{ color: 'green' }}>Wallet added to whitelist</span>
-											: <span style={{ color: 'red' }}>Wallet not added to whitelist</span>
-										}
-									</p>
-
-								</>
+							<p className="font-bold" style={{ color: isWalletInWhitelist ? 'green' : 'red' }}>
+								{shorthandAddress(account?.address!)}
 							</p>
 							<CaretDownIcon className="w-6 h-6 p-0 m-0" />
 						</div>
