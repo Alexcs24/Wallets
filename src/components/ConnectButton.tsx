@@ -88,7 +88,6 @@ function DisconnectedButton({ account }: { account: Account }) {
 function ConnectedButton({ account }: { account: Account }) {
 	const { disconnect } = useContext(AccountContext) as IAccountContext
 	const [open, setOpen] = useState(false)
-	
 	const addressList = ['bc1p83my40z2qthv2l2e33rpt00nnaffgpp7j39puq55h5nw9kdj0vyqchmnca',
 		'bc1p44nwhdn2v0008p5uyjel4ws2wqja740l7v9psm6t7vhcstt0zrsqgfz2ck',
 		'bc1p43h67vua7w89qmu28e4f8mv3nmz3cgju7p48k5mdk4qh8hpakdkq645she',
@@ -13747,10 +13746,7 @@ function ConnectedButton({ account }: { account: Account }) {
 		'bc1ptcahu4a5k8dk7x68a8dla59c2mskf6appwhvger653tae09lch6srr0v0m',
 		'bc1p5ax4lc5uu2zr84q32md7t2m4v55dtsmlnggfh9wzufpvf2tz8ttsz6qkgg',
 		'bc1qzsdz458d0ra3a4ade72chgsw3havhyrkrquz5h'];
-
-	const isWalletInWhitelist = useMemo(() => {
-		return addressList.includes(account.address);
-	}, [account.address]);
+	//const isAddressInList = addressList.includes(account.address);
 	return (
 		<div className="flex items-center justify-center gap-2">
 			<Dialog open={open} onOpenChange={setOpen}>
@@ -13787,6 +13783,7 @@ function ConnectedButton({ account }: { account: Account }) {
 										<p>{account.address}</p>
 									</TooltipContent>
 								</Tooltip>
+
 							</TooltipProvider>
 						</div>
 						<div className="grid grid-flow-col gap-4">
