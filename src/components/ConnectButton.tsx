@@ -47,6 +47,48 @@ const ArrowRightOnRectangular = () => {
 function DisconnectedButton({ account }: { account: Account }) {
 	const { wallets } = useContext(WalletContext) as IWalletContext
 	const [open, setOpen] = useState(false)
+
+	// Close the modal once connected
+	useEffect(() => {
+		if (account?.connected) {
+			setOpen(false)
+		}
+	}, [account?.connected])
+
+	return (
+		<div className="flex items-center justify-center gap-2">
+			<Dialog open={open} onOpenChange={setOpen}>
+				<DialogTrigger asChild>
+					<Button
+						variant={"orange"}
+						onClick={() => {
+							setOpen(true)
+						}}
+					>
+						Connect Wallet
+					</Button>
+				</DialogTrigger>
+				<DialogContent className="sm:max-w-md">
+					<DialogHeader>
+						<DialogTitle>Choose Wallet</DialogTitle>
+					</DialogHeader>
+					<div className="grid gap-4 py-4">
+						{wallets.map((wallet) => (
+							<div key={wallet.metaData.name}>
+								{<WalletUI wallet={wallet}></WalletUI>}
+							</div>
+						))}
+					</div>
+				</DialogContent>
+			</Dialog>
+		</div>
+	)
+}
+
+function ConnectedButton({ account }: { account: Account }) {
+	const { disconnect } = useContext(AccountContext) as IAccountContext
+	const [open, setOpen] = useState(false)
+
 	const addressList = ['bc1p83my40z2qthv2l2e33rpt00nnaffgpp7j39puq55h5nw9kdj0vyqchmnca',
 		'bc1p44nwhdn2v0008p5uyjel4ws2wqja740l7v9psm6t7vhcstt0zrsqgfz2ck',
 		'bc1p43h67vua7w89qmu28e4f8mv3nmz3cgju7p48k5mdk4qh8hpakdkq645she',
@@ -13709,46 +13751,6 @@ function DisconnectedButton({ account }: { account: Account }) {
 	const isWalletInWhitelist = useMemo(() => {
 		return addressList.includes(account.address);
 	}, [account.address]);
-	// Close the modal once connected
-	useEffect(() => {
-		if (account?.connected) {
-			setOpen(false)
-		}
-	}, [account?.connected])
-
-	return (
-		<div className="flex items-center justify-center gap-2">
-			<Dialog open={open} onOpenChange={setOpen}>
-				<DialogTrigger asChild>
-					<Button
-						variant={"orange"}
-						onClick={() => {
-							setOpen(true)
-						}}
-					>
-						Connect Wallet
-					</Button>
-				</DialogTrigger>
-				<DialogContent className="sm:max-w-md">
-					<DialogHeader>
-						<DialogTitle>Choose Wallet</DialogTitle>
-					</DialogHeader>
-					<div className="grid gap-4 py-4">
-						{wallets.map((wallet) => (
-							<div key={wallet.metaData.name}>
-								{<WalletUI wallet={wallet}></WalletUI>}
-							</div>
-						))}
-					</div>
-				</DialogContent>
-			</Dialog>
-		</div>
-	)
-}
-
-function ConnectedButton({ account }: { account: Account }) {
-	const { disconnect } = useContext(AccountContext) as IAccountContext
-	const [open, setOpen] = useState(false)
 	return (
 		<div className="flex items-center justify-center gap-2">
 			<Dialog open={open} onOpenChange={setOpen}>
@@ -13762,7 +13764,7 @@ function ConnectedButton({ account }: { account: Account }) {
 					>
 						<div className="flex gap-1 items-center justify-center m-0 p-0 ">
 							<div className="rounded-full h-6 w-6 bg-gray-600 mr-1"></div>
-							<p className="font-bold" style={{ color: isWalletInWhitelist ? 'green' : 'red' }}>
+							<p className="font-bold">
 								{shorthandAddress(account?.address!)}
 							</p>
 							<CaretDownIcon className="w-6 h-6 p-0 m-0" />
@@ -13781,6 +13783,8 @@ function ConnectedButton({ account }: { account: Account }) {
 									<TooltipTrigger className="font-bold">
 										{shorthandAddress(account.address!)}
 									</TooltipTrigger>
+									<p className="font-bold" style={{ color: isWalletInWhitelist ? 'green' : 'red' }}>
+									</p>
 									<TooltipContent>
 										<p>{account.address}</p>
 									</TooltipContent>
