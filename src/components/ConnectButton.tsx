@@ -114,7 +114,7 @@ function ConnectedButton({ account }: { account: Account }) {
 					</DialogHeader>
 					<div className="grid gap-4 py-4">
 						<div className="flex flex-col gap-2 items-center justify-center">
-							<div className="rounded-full h-20 w-20 bg-gray-600"></div>
+
 							<TooltipProvider>
 								<Tooltip>
 									<TooltipTrigger className="font-bold">
