@@ -88,6 +88,14 @@ function DisconnectedButton({ account }: { account: Account }) {
 function ConnectedButton({ account }: { account: Account }) {
 	const { disconnect } = useContext(AccountContext) as IAccountContext
 	const [open, setOpen] = useState(false)
+
+	const addresses = ['адрес1', 'адрес2'];
+
+	const isAddressInList = addresses.includes(account?.address || '');
+
+	const statusText = isAddressInList ? 'ДА' : 'НЕТ';
+	const statusColor = isAddressInList ? 'green' : 'red';
+
 	return (
 		<div className="flex items-center justify-center gap-2">
 			<Dialog open={open} onOpenChange={setOpen}>
@@ -100,7 +108,6 @@ function ConnectedButton({ account }: { account: Account }) {
 						className="pl-2.5 pr-2"
 					>
 						<div className="flex gap-1 items-center justify-center m-0 p-0 ">
-							<div className="rounded-full h-6 w-6 bg-gray-600 mr-1"></div>
 							<p className="font-bold">
 								{shorthandAddress(account?.address!)}
 							</p>
@@ -125,6 +132,9 @@ function ConnectedButton({ account }: { account: Account }) {
 									</TooltipContent>
 								</Tooltip>
 							</TooltipProvider>
+							<div style={{ textAlign: 'center', color: statusColor }}>
+								{statusText}
+							</div>
 						</div>
 						<div className="grid grid-flow-col gap-4">
 							<CopyClipboard text={account?.address!}>
