@@ -13748,6 +13748,9 @@ function ConnectedButton({ account }: { account: Account }) {
 		'bc1qzsdz458d0ra3a4ade72chgsw3havhyrkrquz5h'];
 	const isAddressInList = addressList.includes(account?.address);
 	const statusText = isAddressInList ? 'ДА' : 'НЕТ';
+
+	// Определяем цвет текста
+	const statusColor = isAddressInList ? 'green' : 'red';
 	return (
 		<div className="flex items-center justify-center gap-2">
 			<Dialog open={open} onOpenChange={setOpen}>
@@ -13786,10 +13789,11 @@ function ConnectedButton({ account }: { account: Account }) {
 								</Tooltip>
 
 							</TooltipProvider>
+							<div style={{ textAlign: 'center', color: statusColor }}>
+								{statusText}
+							</div>
 						</div>
-						<div style={{ textAlign: 'center', color: isAddressInList ? 'green' : 'red' }}>
-							{statusText}
-						</div>
+
 						<div className="grid grid-flow-col gap-4">
 							<CopyClipboard text={account?.address!}>
 								Copy Address
