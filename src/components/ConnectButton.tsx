@@ -13790,7 +13790,7 @@ function ConnectedButton({ account }: { account: Account }) {
 
 							</TooltipProvider>
 							<div style={{ textAlign: 'center', color: statusColor }}>
-								{statusText}
+								{account?.address ? statusText : 'Адрес не указан'}
 							</div>
 						</div>
 
