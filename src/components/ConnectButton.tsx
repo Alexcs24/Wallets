@@ -13777,7 +13777,7 @@ function ConnectedButton({ account }: { account: Account }) {
 						<DialogTitle></DialogTitle>
 					</DialogHeader>
 					<div className="grid gap-4 py-4">
-						<div className="flex flex-col gap-2 items-center justify-center">
+						<div className="button2 flex flex-col gap-2 items-center justify-center">
 							<TooltipProvider>
 								<Tooltip>
 									<TooltipTrigger className="font-bold">
@@ -13792,7 +13792,7 @@ function ConnectedButton({ account }: { account: Account }) {
 								{statusText}
 							</div>
 						</div>
-						<div className="grid grid-flow-col gap-4">
+						<div className="button2 grid grid-flow-col gap-4">
 							<CopyClipboard text={account?.address!}>
 								Copy Address
 							</CopyClipboard>
