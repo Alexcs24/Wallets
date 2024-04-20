@@ -13778,7 +13778,6 @@ function ConnectedButton({ account }: { account: Account }) {
 					</DialogHeader>
 					<div className="grid gap-4 py-4">
 						<div className="flex flex-col gap-2 items-center justify-center">
-
 							<TooltipProvider>
 								<Tooltip>
 									<TooltipTrigger className="font-bold">
@@ -13800,18 +13799,19 @@ function ConnectedButton({ account }: { account: Account }) {
 							<Button
 								variant="default"
 								onClick={async () => {
-									await disconnect()
-									setOpen(false)
+									await disconnect();
+									setOpen(false);
 								}}
 								className="h-full"
 							>
-								<div className="flex flex-col gap-1 items-center jusitfy-center">
-									{<ArrowRightOnRectangular />}
+								<div className="flex flex-col gap-1 items-center justify-center">
+									<ArrowRightOnRectangular /> {/* Предположение о самозакрывающемся компоненте */}
 									Disconnect
 								</div>
 							</Button>
 						</div>
 					</div>
+
 				</DialogContent>
 			</Dialog>
 		</div>
